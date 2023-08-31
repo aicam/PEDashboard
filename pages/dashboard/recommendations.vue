@@ -96,49 +96,50 @@
         <template v-slot:expanded-item="{ headers, item }">
           <td :colspan="headers.length">
             <v-col class="py-10">
-              <p style="font-size: 20px; font-weight: 600; margin-bottom: 40px">Insight</p>
-              <p style="font-size: 14px; font-weight: 400">Sample Text ...</p>
+              <v-row class="px-3">
+                <p style="font-size: 20px; font-weight: 600;" class="my-3">Insight</p>
+                <div class="d-flex flex-row ms-auto me-0 my-3">
+                  <v-row>
+                    <v-btn
+                      @click="setSelectForInsight(item)"
+                      rounded
+                      color="black"
+                      class="mt-4 mx-3"
+                      style="color: white"
+                    >
+                      <v-icon>mdi-plus</v-icon>
+                      Add to insight
+                    </v-btn>
+                    <v-btn
+                      @click="setStartForTracking(item)"
+                      rounded
+                      color="white"
+                      class="mt-4"
+                      style="color: black"
+                    >
+                      <v-icon>mdi-plus</v-icon>
+                      Add to tracking
+                    </v-btn>
+                    <v-btn
+                      @click="dialogAddReview = true"
+                      rounded
+                      color="gray"
+                      class="mt-4 mx-3"
+                      style="color: black"
+                    >
+                      <v-icon>mdi-plus</v-icon>
+                      Add a review
+                    </v-btn>
+                  </v-row>
+                </div>
+              </v-row>
+              <p style="font-size: 14px; font-weight: 400" class="mt-10">{{item.insight}}</p>
               <v-row class="d-flex justify-space-between mt-10">
                   <p style="font-size: 14px; font-weight: 400" class="mt-4 ps-3">
                     {{`There is 2.3 Gb of data gathered for this company`}}
                   </p>
-
-                  <div class="d-flex flex-row ms-auto me-0">
-                    <v-row>
-                      <v-btn
-                        @click="setSelectForInsight(item)"
-                        rounded
-                        color="black"
-                        class="mt-4 mx-3"
-                        style="color: white"
-                      >
-                        <v-icon>mdi-plus</v-icon>
-                        Add to insight
-                      </v-btn>
-                      <v-btn
-                        @click="setStartForTracking(item)"
-                        rounded
-                        color="white"
-                        class="mt-4"
-                        style="color: black"
-                      >
-                        <v-icon>mdi-plus</v-icon>
-                        Add to tracking
-                      </v-btn>
-                      <v-btn
-                        @click="dialogAddReview = true"
-                        rounded
-                        color="gray"
-                        class="mt-4 mx-3"
-                        style="color: black"
-                      >
-                        <v-icon>mdi-plus</v-icon>
-                        Add a review
-                      </v-btn>
-                    </v-row>
-                  </div>
               </v-row>
-              <v-card class="mt-10">
+              <v-card class="mt-10" style="background: #F0F0F0">
                 <v-row style="justify-content: center; align-items: center">
                   <img alt="logo" class="ps-4" style="width: 40px; height: 40px" src="../../static/vuetify-logo.svg">
                   <v-col>
@@ -150,79 +151,65 @@
                     >
                       {{`Status: Gathering Data`}}
                     </v-chip>
-                    <v-row>
-                      <v-col cols="12" sm="12" md="3" lg="3" xl="3" xxl="3">
-                        <v-chip
-                          class="ma-2"
-                          color="#87CEEB"
-                          text-color="white"
-                        >
-                          {{`Last Update: 12.02.2023`}}
-                        </v-chip>
-                      </v-col>
-                      <v-col cols="12" sm="12" md="3" lg="3" xl="3" xxl="3">
-                        <v-chip
-                          class="ma-2"
-                          color="#87CEEB"
-                          text-color="white"
-                        >
-                          {{`Gathered Data: 30 Mb`}}
-                        </v-chip>
-                      </v-col>
-                      <v-col cols="12" sm="12" md="3" lg="3" xl="3" xxl="3">
-                        <v-chip
-                          class="ma-2"
-                          color="#87CEEB"
-                          text-color="white"
-                        >
-                          {{`AI Model: Some Model`}}
-                        </v-chip>
-                      </v-col>
+                    <v-row class="ps-4 pt-3">
+                      <v-chip
+                        class="ma-2"
+                        color="#87CEEB"
+                        text-color="white"
+                      >
+                        {{`Last Update: 12.02.2023`}}
+                      </v-chip>
+                      <v-chip
+                        class="ma-2"
+                        color="#87CEEB"
+                        text-color="white"
+                      >
+                        {{`Gathered Data: 30 Mb`}}
+                      </v-chip>
+                      <v-chip
+                        class="ma-2"
+                        color="#87CEEB"
+                        text-color="white"
+                      >
+                        {{`AI Model: Some Model`}}
+                      </v-chip>
                     </v-row>
-                    <v-row>
-                      <v-col cols="12" sm="12" md="4" lg="4" xl="4" xxl="4">
-                        <v-chip
-                          class="ma-2"
-                          color="cyan"
-                          text-color="white"
-                        >
-                          {{`Data Gathering Process: 90%`}}
-                        </v-chip>
-                      </v-col>
-                      <v-col cols="12" sm="12" md="8" lg="8" xl="8" xxl="8">
-                        <v-chip
-                          class="ma-2"
-                          color="cyan"
-                          text-color="white"
-                        >
-                          {{`Data Gathering remaining time: 59 minutes`}}
-                        </v-chip>
-                      </v-col>
+                    <v-row class="ps-4 pt-3">
+                      <v-chip
+                        class="ma-2"
+                        color="cyan"
+                        text-color="white"
+                      >
+                        {{`Data Gathering Process: 90%`}}
+                      </v-chip>
+                      <v-chip
+                        class="ma-2"
+                        color="cyan"
+                        text-color="white"
+                      >
+                        {{`Data Gathering remaining time: 59 minutes`}}
+                      </v-chip>
                     </v-row>
-                    <v-row>
-                      <v-col cols="12" sm="12" md="4" lg="4" xl="4" xxl="4">
-                        <v-chip
-                          class="ma-2"
-                          color="orange"
-                          text-color="white"
-                        >
-                          {{`AI Learning Process: 0%`}}
-                        </v-chip>
-                      </v-col>
-                      <v-col cols="12" sm="12" md="8" lg="8" xl="8" xxl="8">
-                        <v-chip
-                          class="ma-2"
-                          color="orange"
-                          text-color="white"
-                        >
-                          {{`AI Learning remaining time: 1h:59m:12s`}}
-                        </v-chip>
-                      </v-col>
+                    <v-row class="ps-4 pt-3">
+                      <v-chip
+                        class="ma-2"
+                        color="orange"
+                        text-color="white"
+                      >
+                        {{`AI Learning Process: 0%`}}
+                      </v-chip>
+                      <v-chip
+                        class="ma-2"
+                        color="orange"
+                        text-color="white"
+                      >
+                        {{`AI Learning remaining time: 1h:59m:12s`}}
+                      </v-chip>
                     </v-row>
                   </v-col>
                 </v-row>
               </v-card>
-              <v-card class="mt-10">
+              <v-card class="mt-10" style="background: #F0F0F0">
                 <v-row style="justify-content: center; align-items: center">
                   <img alt="logo" class="ps-4" style="width: 40px; height: 40px" src="../../static/vuetify-logo.svg">
                   <v-col>
@@ -234,8 +221,7 @@
                     >
                       {{`Status: Gathering Data`}}
                     </v-chip>
-                    <v-row>
-                      <v-col cols="12" sm="12" md="3" lg="3" xl="3" xxl="3">
+                    <v-row class="ps-4 pt-3">
                         <v-chip
                           class="ma-2"
                           color="#87CEEB"
@@ -243,8 +229,6 @@
                         >
                           {{`Last Update: 12.02.2023`}}
                         </v-chip>
-                      </v-col>
-                      <v-col cols="12" sm="12" md="3" lg="3" xl="3" xxl="3">
                         <v-chip
                           class="ma-2"
                           color="#87CEEB"
@@ -252,8 +236,6 @@
                         >
                           {{`Gathered Data: 30 Mb`}}
                         </v-chip>
-                      </v-col>
-                      <v-col cols="12" sm="12" md="3" lg="3" xl="3" xxl="3">
                         <v-chip
                           class="ma-2"
                           color="#87CEEB"
@@ -261,10 +243,8 @@
                         >
                           {{`AI Model: Some Model`}}
                         </v-chip>
-                      </v-col>
                     </v-row>
-                    <v-row>
-                      <v-col cols="12" sm="12" md="4" lg="4" xl="4" xxl="4">
+                    <v-row class="ps-4 pt-3">
                         <v-chip
                           class="ma-2"
                           color="cyan"
@@ -272,8 +252,6 @@
                         >
                           {{`Data Gathering Process: 90%`}}
                         </v-chip>
-                      </v-col>
-                      <v-col cols="12" sm="12" md="8" lg="8" xl="8" xxl="8">
                         <v-chip
                           class="ma-2"
                           color="cyan"
@@ -281,10 +259,8 @@
                         >
                           {{`Data Gathering remaining time: 59 minutes`}}
                         </v-chip>
-                      </v-col>
                     </v-row>
-                    <v-row>
-                      <v-col cols="12" sm="12" md="4" lg="4" xl="4" xxl="4">
+                    <v-row class="ps-4 pt-3">
                         <v-chip
                           class="ma-2"
                           color="orange"
@@ -292,8 +268,6 @@
                         >
                           {{`AI Learning Process: 0%`}}
                         </v-chip>
-                      </v-col>
-                      <v-col cols="12" sm="12" md="8" lg="8" xl="8" xxl="8">
                         <v-chip
                           class="ma-2"
                           color="orange"
@@ -301,7 +275,6 @@
                         >
                           {{`AI Learning remaining time: 1h:59m:12s`}}
                         </v-chip>
-                      </v-col>
                     </v-row>
                   </v-col>
                 </v-row>
