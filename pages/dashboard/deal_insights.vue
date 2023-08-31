@@ -56,6 +56,9 @@
         "
         >
           <v-col class="justify-space-between align-center h-100">
+            <div class="d-flex flex-row justify-end">
+              <v-icon style="color: red" @click="dialogDeleteAsset = true">mdi-close</v-icon>
+            </div>
             <p class="text-center" style="font-size: 2rem; line-height: 2.75rem; font-weight: 700">{{`Apple`}}</p>
             <v-row class="mt-3">
               <img alt="logo" class="ps-3 pe-2" style="width: 32px; height: 32px" src="../../static/vuetify-logo.svg">
@@ -81,7 +84,7 @@
               <img alt="logo" class="ps-3 pe-2" style="width: 32px; height: 32px" src="../../static/vuetify-logo.svg">
               <p class="text-center" style="font-size: 0.7rem; line-height: 1.5rem; font-weight: 700">{{`Completeness: 83`}}</p>
             </v-row>
-            <v-btn class=" d-flex flex-row mx-auto mt-6" style="background: black; color: white; border-radius: 30px; text-transform: capitalize">View Details</v-btn>
+            <v-btn class=" d-flex flex-row mx-auto mt-6" @click="dialogViewAssetDetail = true" style="background: black; color: white; border-radius: 30px; text-transform: capitalize">View Details</v-btn>
           </v-col>
         </v-card>
       </v-col>
@@ -94,6 +97,9 @@
         "
         >
           <v-col class="justify-space-between align-center h-100">
+            <div class="d-flex flex-row justify-end">
+              <v-icon style="color: red" @click="dialogDeleteAsset = true">mdi-close</v-icon>
+            </div>
             <p class="text-center" style="font-size: 2rem; line-height: 2.75rem; font-weight: 700">{{`Apple`}}</p>
             <v-row class="mt-3">
               <img alt="logo" class="ps-3 pe-2" style="width: 32px; height: 32px" src="../../static/vuetify-logo.svg">
@@ -119,40 +125,380 @@
               <img alt="logo" class="ps-3 pe-2" style="width: 32px; height: 32px" src="../../static/vuetify-logo.svg">
               <p class="text-center" style="font-size: 0.7rem; line-height: 1.5rem; font-weight: 700">{{`Completeness: 83`}}</p>
             </v-row>
-            <v-btn class=" d-flex flex-row mx-auto mt-6" style="background: black; color: white; border-radius: 30px; text-transform: capitalize">View Details</v-btn>
-          </v-col>
-        </v-card>
-      </v-col>
-      <v-col cols="12" sm="6" md="3" lg="3" xl="3" xxl="3">
-        <v-card
-          style="
-          padding-top: 10px;
-          padding-bottom: 2px;
-          padding-left: 10px;
-          padding-right: 10px;
-          background: linear-gradient(82.99deg, rgb(92, 105, 226) 5.47%, rgb(8, 207, 234) 94.53%);
-          color: white;
-         "
-        >
-          <v-btn class=" d-flex flex-row ms-auto me-2 mt-2" style="background: black; color: white; border-radius: 30px; text-transform: capitalize">View</v-btn>
-          <v-col class="justify-space-between align-center h-100">
-            <p class="text-center" style="font-size: 2rem; line-height: 2.75rem; font-weight: 700">{{`5`}}</p>
-            <p class="text-center" style="font-size: 1.2rem; line-height: 1.5rem; font-weight: 700">Company insights</p>
-            <div style="height: 2px; background: red"></div>
-            <div class="candlestick">
-              <div class="wick"></div>
-              <div class="body" style="width: 70%; left: 10%"></div>
-              <div class="shadow-left" style="width: 10%"></div>
-              <div class="shadow-right" style="width: 20%"></div>
-            </div>
-            <v-row class="justify-space-between mt-1 px-2">
-              <p style="font-size: 10px">min: 10%</p>
-              <p style="font-size: 10px">max: 70%</p>
-            </v-row>
+            <v-btn class=" d-flex flex-row mx-auto mt-6" @click="dialogViewAssetDetail = true" style="background: black; color: white; border-radius: 30px; text-transform: capitalize">View Details</v-btn>
           </v-col>
         </v-card>
       </v-col>
     </v-row>
+
+    <!-- Delete asset Dialog START -->
+    <v-dialog
+      v-model="dialogDeleteAsset"
+      max-width="500px"
+    >
+      <v-card>
+        <v-card-title>
+          <span class="px-3" style="font-size: 18px; font-weight: 500">Are you sure want to delete this asset</span>
+        </v-card-title>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="red darken-1"
+            text
+            @click="dialogDeleteAsset = false"
+          >
+            Cancel
+          </v-btn>
+          <v-btn
+            color="blue darken-1"
+            text
+            @click="() => console.log('delete asset')"
+          >
+            Yes
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+    <!-- Delete asset Dialog END -->
+
+    <!-- View Asset Detail Dialog START -->
+    <v-dialog
+      v-model="dialogViewAssetDetail"
+      max-width="90vw"
+    >
+      <v-card class="mt-5">
+        <v-card-text>
+          <v-container>
+            <v-col>
+              <v-row style="border-bottom: 1px solid gray">
+                <v-col cols="12" sm="12" md="6" lg="6" xl="6" xxl="6">
+                  <v-card
+                    style="
+                    padding: 10px;
+                    background: #F0F0F0;
+                    color: black;
+                  "
+                  >
+                    <v-col class="justify-space-between align-center h-100">
+                      <p class="text-center" style="font-size: 2rem; line-height: 2.75rem; font-weight: 700">{{`Apple`}}</p>
+                      <v-row class="mt-3">
+                        <img alt="logo" class="ps-3 pe-2" style="width: 32px; height: 32px" src="../../static/vuetify-logo.svg">
+                        <p class="text-center" style="font-size: 0.7rem; line-height: 1.5rem; font-weight: 700">{{`Total trained data: 26 Gb`}}</p>
+                      </v-row>
+                      <v-row>
+                        <img alt="logo" class="ps-3 pe-2" style="width: 32px; height: 32px" src="../../static/vuetify-logo.svg">
+                        <p class="text-center" style="font-size: 0.7rem; line-height: 1.5rem; font-weight: 700">{{`Total Gathered data: 30 Gb`}}</p>
+                      </v-row>
+                      <v-row>
+                        <img alt="logo" class="ps-3 pe-2" style="width: 32px; height: 32px" src="../../static/vuetify-logo.svg">
+                        <p class="text-center" style="font-size: 0.7rem; line-height: 1.5rem; font-weight: 700">{{`Total uploaded documents: 26 Gb`}}</p>
+                      </v-row>
+                      <v-row>
+                        <img alt="logo" class="ps-3 pe-2" style="width: 32px; height: 32px" src="../../static/vuetify-logo.svg">
+                        <p class="text-center" style="font-size: 0.7rem; line-height: 1.5rem; font-weight: 700">{{`Total trained data: 26 Gb`}}</p>
+                      </v-row>
+                      <v-row>
+                        <img alt="logo" class="ps-3 pe-2" style="width: 32px; height: 32px" src="../../static/vuetify-logo.svg">
+                        <p class="text-center" style="font-size: 0.7rem; line-height: 1.5rem; font-weight: 700">{{`Score: 83`}}</p>
+                      </v-row>
+                      <v-row>
+                        <img alt="logo" class="ps-3 pe-2" style="width: 32px; height: 32px" src="../../static/vuetify-logo.svg">
+                        <p class="text-center" style="font-size: 0.7rem; line-height: 1.5rem; font-weight: 700">{{`Completeness: 83`}}</p>
+                      </v-row>
+                    </v-col>
+                  </v-card>
+                  <v-row class="justify-space-between mt-3">
+                    <v-chip
+                      class="ma-2"
+                      color="gray"
+                      label
+                      text-color="black"
+                    >
+                      <v-icon left>
+                        mdi-information
+                      </v-icon>
+                      BioTech
+                    </v-chip>
+                    <v-chip
+                      class="ma-2"
+                      color="#F0F0F0"
+                      label
+                      text-color="black"
+                    >
+                      <v-icon left>
+                        mdi-puzzle
+                      </v-icon>
+                      Technology, Medicare, Wearable devices
+                    </v-chip>
+                  </v-row>
+                </v-col>
+                <v-col cols="12" sm="12" md="6" lg="6" xl="6" xxl="6">
+                  <v-row class="mt-1 justify-end">
+                    <v-btn class="me-2" color="black" style="color: white; border-radius: 20px">Chat with AI</v-btn>
+                    <v-btn color="white" style="color: black; border-radius: 20px" @click="dialogMonitoring = true">Monitoring</v-btn>
+                  </v-row>
+                  <v-row class="w-100 mt-3 justify-center">
+                    <v-btn class="w-100 mt-5 me-2" color="gray" style="color: black; border-radius: 20px">
+                      <v-icon>mdi-plus</v-icon>
+                      Upload more documents
+                    </v-btn>
+                  </v-row>
+                  <v-row class="w-100 px-3 pt-3 mt-8 justify-space-between" style="background: lightgray; border-radius: 5px">
+                    <p>File Name.pdf</p>
+                    <p>Size: 34Kb</p>
+                    <v-icon class="mt-0 mb-auto" style="color: red">mdi-delete</v-icon>
+                  </v-row>
+                  <v-row class="w-100 px-3 pt-3 mt-8 justify-space-between" style="background: lightgray; border-radius: 5px">
+                    <p>File Name.pdf</p>
+                    <p>Size: 34Kb</p>
+                    <v-icon class="mt-0 mb-auto" style="color: red">mdi-delete</v-icon>
+                  </v-row>
+                  <v-row class="w-100 px-3 pt-3 mt-8 justify-space-between" style="background: lightgray; border-radius: 5px">
+                    <p>File Name.pdf</p>
+                    <p>Size: 34Kb</p>
+                    <v-icon class="mt-0 mb-auto" style="color: red">mdi-delete</v-icon>
+                  </v-row>
+
+                </v-col>
+              </v-row>
+              <v-row class="my-5 justify-center">
+                <v-btn class="mt-3 me-2" color="black" style="color: white; border-radius: 20px">Standard Due Diligence</v-btn>
+                <v-btn class="mt-3" color="white" style="color: black; border-radius: 20px">Alternative Insights</v-btn>
+              </v-row>
+              <v-card style="max-height: 90vh">
+                <v-card-text>
+                  <v-container>
+                    <v-row class="mb-5 justify-center">
+                      <v-btn class="mt-3 me-2" color="black" style="color: white; border-radius: 20px">Commercial</v-btn>
+                      <v-btn class="mt-3 me-2" color="white" style="color: black; border-radius: 20px">Finance</v-btn>
+                      <v-btn class="mt-3 me-2" color="black" style="color: white; border-radius: 20px">Legal</v-btn>
+                      <v-btn class="mt-3" color="white" style="color: black; border-radius: 20px">IT</v-btn>
+                    </v-row>
+                    <p style="max-height: 50vh">
+                      Sample Text for this. Sample Text for this. Sample Text for this. Sample Text for this.Sample Text for this. Sample Text for this.
+                      Sample Text for this. Sample Text for this. Sample Text for this. Sample Text for this.Sample Text for this. Sample Text for this.
+                      Sample Text for this. Sample Text for this. Sample Text for this. Sample Text for this.Sample Text for this. Sample Text for this.
+                      Sample Text for this. Sample Text for this. Sample Text for this. Sample Text for this.Sample Text for this. Sample Text for this.
+                      Sample Text for this. Sample Text for this. Sample Text for this. Sample Text for this.Sample Text for this. Sample Text for this.
+                    </p>
+                  </v-container>
+                </v-card-text>
+              </v-card>
+            </v-col>
+          </v-container>
+        </v-card-text>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="red darken-1"
+            text
+            @click="dialogViewAssetDetail = false"
+          >
+            Close
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+    <!-- View Asset Detail Dialog END -->
+
+    <!-- View Asset Detail Dialog START -->
+    <v-dialog
+      v-model="dialogMonitoring"
+      max-width="90vw"
+    >
+      <v-card>
+        <v-card-text>
+          <v-container>
+            <v-col class="py-10">
+              <v-row class="px-3">
+                <p style="font-size: 20px; font-weight: 600;" class="my-3">Insight</p>
+                <div class="d-flex flex-row ms-auto me-0 my-3">
+                  <v-row>
+                    <v-btn
+                      @click="dialogAddReview = true"
+                      rounded
+                      color="gray"
+                      class="mt-4 mx-3"
+                      style="color: black"
+                    >
+                      <v-icon>mdi-plus</v-icon>
+                      Add a review
+                    </v-btn>
+                  </v-row>
+                </div>
+              </v-row>
+              <p style="font-size: 14px; font-weight: 400" class="mt-10">Sample Text ...</p>
+              <v-row class="d-flex justify-space-between mt-10">
+                <p style="font-size: 14px; font-weight: 400" class="mt-4 ps-3">
+                  {{`There is 2.3 Gb of data gathered for this company`}}
+                </p>
+              </v-row>
+              <v-card class="mt-10" style="background: #F0F0F0">
+                <v-row style="justify-content: center; align-items: center">
+                  <img alt="logo" class="ps-4" style="width: 40px; height: 40px" src="../../static/vuetify-logo.svg">
+                  <v-col>
+                    <v-chip
+                      class="ma-2"
+                      color="green"
+                      text-color="white"
+                      style="justify-content: center; align-items: center"
+                    >
+                      {{`Status: Gathering Data`}}
+                    </v-chip>
+                    <v-row class="ps-4 pt-3">
+                      <v-chip
+                        class="ma-2"
+                        color="#87CEEB"
+                        text-color="white"
+                      >
+                        {{`Last Update: 12.02.2023`}}
+                      </v-chip>
+                      <v-chip
+                        class="ma-2"
+                        color="#87CEEB"
+                        text-color="white"
+                      >
+                        {{`Gathered Data: 30 Mb`}}
+                      </v-chip>
+                      <v-chip
+                        class="ma-2"
+                        color="#87CEEB"
+                        text-color="white"
+                      >
+                        {{`AI Model: Some Model`}}
+                      </v-chip>
+                    </v-row>
+                    <v-row class="ps-4 pt-3">
+                      <v-chip
+                        class="ma-2"
+                        color="cyan"
+                        text-color="white"
+                      >
+                        {{`Data Gathering Process: 90%`}}
+                      </v-chip>
+                      <v-chip
+                        class="ma-2"
+                        color="cyan"
+                        text-color="white"
+                      >
+                        {{`Data Gathering remaining time: 59 minutes`}}
+                      </v-chip>
+                    </v-row>
+                    <v-row class="ps-4 pt-3">
+                      <v-chip
+                        class="ma-2"
+                        color="orange"
+                        text-color="white"
+                      >
+                        {{`AI Learning Process: 0%`}}
+                      </v-chip>
+                      <v-chip
+                        class="ma-2"
+                        color="orange"
+                        text-color="white"
+                      >
+                        {{`AI Learning remaining time: 1h:59m:12s`}}
+                      </v-chip>
+                    </v-row>
+                  </v-col>
+                </v-row>
+              </v-card>
+              <v-card class="mt-10" style="background: #F0F0F0">
+                <v-row style="justify-content: center; align-items: center">
+                  <img alt="logo" class="ps-4" style="width: 40px; height: 40px" src="../../static/vuetify-logo.svg">
+                  <v-col>
+                    <v-chip
+                      class="ma-2"
+                      color="green"
+                      text-color="white"
+                      style="justify-content: center; align-items: center"
+                    >
+                      {{`Status: Gathering Data`}}
+                    </v-chip>
+                    <v-row class="ps-4 pt-3">
+                      <v-chip
+                        class="ma-2"
+                        color="#87CEEB"
+                        text-color="white"
+                      >
+                        {{`Last Update: 12.02.2023`}}
+                      </v-chip>
+                      <v-chip
+                        class="ma-2"
+                        color="#87CEEB"
+                        text-color="white"
+                      >
+                        {{`Gathered Data: 30 Mb`}}
+                      </v-chip>
+                      <v-chip
+                        class="ma-2"
+                        color="#87CEEB"
+                        text-color="white"
+                      >
+                        {{`AI Model: Some Model`}}
+                      </v-chip>
+                    </v-row>
+                    <v-row class="ps-4 pt-3">
+                      <v-chip
+                        class="ma-2"
+                        color="cyan"
+                        text-color="white"
+                      >
+                        {{`Data Gathering Process: 90%`}}
+                      </v-chip>
+                      <v-chip
+                        class="ma-2"
+                        color="cyan"
+                        text-color="white"
+                      >
+                        {{`Data Gathering remaining time: 59 minutes`}}
+                      </v-chip>
+                    </v-row>
+                    <v-row class="ps-4 pt-3">
+                      <v-chip
+                        class="ma-2"
+                        color="orange"
+                        text-color="white"
+                      >
+                        {{`AI Learning Process: 0%`}}
+                      </v-chip>
+                      <v-chip
+                        class="ma-2"
+                        color="orange"
+                        text-color="white"
+                      >
+                        {{`AI Learning remaining time: 1h:59m:12s`}}
+                      </v-chip>
+                    </v-row>
+                  </v-col>
+                </v-row>
+              </v-card>
+            </v-col>
+          </v-container>
+        </v-card-text>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="red darken-1"
+            text
+            @click="dialogMonitoring = false"
+          >
+            Cancel
+          </v-btn>
+          <v-btn
+            color="blue darken-1"
+            text
+            @click="() => console.log('')"
+          >
+            Save
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+    <!-- View Asset Detail Dialog END -->
 
     <!-- Add a review Dialog START -->
     <v-dialog
@@ -201,273 +547,6 @@
       </v-card>
     </v-dialog>
     <!-- Add a review Dialog END -->
-
-    <!-- Focus search Dialog START -->
-    <v-dialog
-      v-model="dialogAddFocusSearch"
-      max-width="500px"
-    >
-      <v-card>
-        <v-card-title>
-          <span class="px-3" style="font-size: 18px; font-weight: 500">Please filter the search based on your KPIs. By clicking on '+' you can add an AI based custom KPI</span>
-        </v-card-title>
-
-        <v-card-text>
-          <v-container>
-            <v-col>
-              <v-btn
-                style="border-radius: 20px; background: black; color: white"
-                @click="dialogSelectFromSearchHistory = true"
-              >
-                Select from search history
-              </v-btn>
-              <v-row class="mt-5">
-                <p class="mt-3 me-3">Label name</p>
-                <v-text-field
-                  outlined
-                  label="Input value">
-                </v-text-field>
-              </v-row>
-              <v-row class="mt-5">
-                <p class="mt-1 me-3">Label name</p>
-                <v-slider
-                  :thumb-size="28"
-                  color="black"
-                  thumb-label="always"
-                ></v-slider>
-              </v-row>
-
-              <v-row class="mt-5 px-3 py-3" style="background: lightskyblue; border-radius: 7px">
-                <p class="mt-3 me-3">Custom KPI</p>
-                <v-text-field
-                  outlined
-                  label="Input value">
-                </v-text-field>
-                <v-icon @click="() => console.log('delete custom dialog')" class="mt-0 mb-auto ms-4 pointer" style="font-size: 20px; color: white; background: red; border-radius: 50%">mdi-close</v-icon>
-              </v-row>
-
-              <v-btn
-                @click="dialogAddNewAIBasedKPI = true"
-                rounded
-                color="gray"
-                class="mt-10 mx-auto"
-                style="color: black"
-              >
-                <v-icon>mdi-plus</v-icon>
-                Add new AI based KPI
-              </v-btn>
-            </v-col>
-          </v-container>
-        </v-card-text>
-
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn
-            color="red darken-1"
-            text
-            @click="dialogAddFocusSearch = false"
-          >
-            Cancel
-          </v-btn>
-          <v-btn
-            color="blue darken-1"
-            text
-            @click="dialogSearchFilterName = true"
-          >
-            Save
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-    <!-- Focus search Dialog END -->
-
-    <!-- Select From Search History Dialog START -->
-    <v-dialog
-      v-model="dialogSelectFromSearchHistory"
-      max-width="500px"
-    >
-      <v-card>
-        <v-card-title>
-          <span class="px-3" style="font-size: 18px; font-weight: 500">Searches history</span>
-        </v-card-title>
-
-        <v-card-text>
-          <v-container>
-            <v-col>
-              <v-card>
-                <v-col class="p-3">
-                  <v-text-field
-                    outlined
-                    label="Search name"
-                  ></v-text-field>
-                  <v-textarea
-                    outlined
-                    label="Search description"
-                  ></v-textarea>
-                  <v-spacer></v-spacer>
-                  <v-row justify="between">
-                    <v-btn
-                      color="red darken-1"
-                      text
-                      @click="dialogSelectFromSearchHistory = false"
-                    >
-                      Delete
-                    </v-btn>
-                    <v-btn
-                      color="green darken-1"
-                      text
-                      @click="() => console.log('')"
-                    >
-                      Select
-                    </v-btn>
-                  </v-row>
-                </v-col>
-              </v-card>
-            </v-col>
-          </v-container>
-        </v-card-text>
-
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn
-            color="red darken-1"
-            text
-            @click="dialogAddFocusSearch = false"
-          >
-            Cancel
-          </v-btn>
-          <v-btn
-            color="blue darken-1"
-            text
-            @click="() => console.log('save focus search')"
-          >
-            Save
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-    <!-- Select From Search History Dialog END -->
-
-    <!-- Add New AI based KPI Dialog START -->
-    <v-dialog
-      v-model="dialogAddNewAIBasedKPI"
-      max-width="500px"
-    >
-      <v-card>
-        <v-card-title>
-          <span class="px-3" style="font-size: 18px; font-weight: 500" @click="dialogAddNewAIBasedKPI = true">Add new AI based KPI</span>
-        </v-card-title>
-
-        <v-card-text>
-          <v-container>
-            <v-col>
-              <v-card>
-                <v-col class="p-3">
-                  <v-text-field
-                    outlined
-                    label="KPI label"
-                  ></v-text-field>
-                  <v-text-field
-                    outlined
-                    label="KPI Type"
-                  ></v-text-field>
-
-                  <v-spacer></v-spacer>
-                  <p>Please write your KPI logic for this input here and AI model will filters the data based on your topic</p>
-                  <v-textarea
-                    outlined
-                    label="KPI logic"
-                  ></v-textarea>
-                  <v-spacer></v-spacer>
-                  <v-row justify="between">
-                    <v-btn
-                      color="red darken-1"
-                      text
-                      @click="dialogSelectFromSearchHistory = false"
-                    >
-                      Delete
-                    </v-btn>
-                    <v-btn
-                      color="green darken-1"
-                      text
-                      @click="() => console.log('')"
-                    >
-                      Select
-                    </v-btn>
-                  </v-row>
-                </v-col>
-              </v-card>
-            </v-col>
-          </v-container>
-        </v-card-text>
-
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn
-            color="red darken-1"
-            text
-            @click="dialogAddNewAIBasedKPI = false"
-          >
-            Cancel
-          </v-btn>
-          <v-btn
-            color="blue darken-1"
-            text
-            @click="() => console.log('save focus search')"
-          >
-            Save
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-    <!-- Add New AI based KPI Dialog END -->
-
-    <!-- Search Filter Name Dialog START -->
-    <v-dialog
-      v-model="dialogSearchFilterName"
-      max-width="500px"
-    >
-      <v-card>
-        <v-card-title>
-          <span class="px-3" style="font-size: 18px; font-weight: 500" @click="dialogAddNewAIBasedKPI = true">Please enter name of your search filter</span>
-        </v-card-title>
-
-        <v-card-text>
-          <v-container>
-            <v-col>
-              <v-card>
-                <v-col class="p-3">
-                  <v-text-field
-                    outlined
-                    label="Search filter name"
-                  ></v-text-field>
-                  <v-spacer></v-spacer>
-                </v-col>
-              </v-card>
-            </v-col>
-          </v-container>
-        </v-card-text>
-
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn
-            color="red darken-1"
-            text
-            @click="dialogSearchFilterName = false"
-          >
-            Cancel
-          </v-btn>
-          <v-btn
-            color="blue darken-1"
-            text
-            @click="() => console.log('name for your search filter')"
-          >
-            Save
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-    <!-- Search Filter Name Dialog END -->
   </div>
 </template>
 
@@ -479,141 +558,15 @@ export default {
   data () {
     return {
       expanded: [],
+      dialogDeleteAsset: false,
+      dialogViewAssetDetail: false,
+      dialogMonitoring: false,
       dialogAddReview: false,
-      dialogAddFocusSearch: false,
-      dialogSelectFromSearchHistory: false,
-      dialogAddNewAIBasedKPI: false,
-      dialogSearchFilterName: false,
-      headers: [
-        {
-          text: 'Name',
-          align: 'start',
-          sortable: false,
-          value: 'name',
-        },
-        { text: 'Score', value: 'score' },
-        { text: 'HQ Location', value: 'hqLocation' },
-        { text: 'Revenue Size', value: 'revenueSize' },
-        { text: 'Industry', value: 'industry' },
-        { text: 'Insight', value: 'data-table-expand' },
-      ],
-      allCompanies: [],
-      companies: null,
-      precisionVsRecall: 45,
-      currentSearches: [
-        {
-          label: "0",
-          value: "All"
-        },
-        {
-          label: "1",
-          value: "Apple"
-        },
-        {
-          label: "2",
-          value: "BMW"
-        },
-        {
-          label: "3",
-          value: "SpaceX"
-        },
-        {
-          label: "4",
-          value: "Tesla"
-        },
-        {
-          label: "5",
-          value: "Benz"
-        },
-        {
-          label: "6",
-          value: "Coca Cola"
-        },
-        {
-          label: "7",
-          value: "Toronto, Ontario, Canada"
-        },
-        {
-          label: "8",
-          value: "Los Angeles"
-        },
-        {
-          label: "9",
-          value: "Audi"
-        },
-        {
-          label: "10",
-          value: "Ottawa"
-        },
-        {
-          label: "11",
-          value: "Walmart"
-        },
-        {
-          label: "12",
-          value: "New York, USA"
-        },
-        {
-          label: "13",
-          value: "BMW"
-        },
-        {
-          label: "14",
-          value: "SpaceX"
-        },
-        {
-          label: "15",
-          value: "Tesla"
-        },
-        {
-          label: "16",
-          value: "Benz"
-        },
-        {
-          label: "17",
-          value: "Coca Cola"
-        },
-        {
-          label: "18",
-          value: "Toronto, Ontario, Canada"
-        },
-      ]
     }
   },
   methods: {
-    getRandomColor(colorArray) {
-      const randomIndex = Math.floor(Math.random() * colorArray.length);
-      return colorArray[randomIndex];
-    },
-    setSelectForInsight(item) {
-      let selectedForInsights
-      if (localStorage.getItem("selectedForInsights")) {
-        selectedForInsights = JSON.parse(localStorage.getItem("selectedForInsights"))
-        if (!selectedForInsights.filter((itemClone) => itemClone === item).length) {
-          selectedForInsights.push(item)
-        }
-      } else {
-        selectedForInsights = [item]
-      }
-      localStorage.setItem("selectedForInsights", JSON.stringify(selectedForInsights))
-    },
-    setStartForTracking(item) {
-      let startedForTracking
-      if (localStorage.getItem("startedForTracking")) {
-        startedForTracking = JSON.parse(localStorage.getItem("startedForTracking"))
-        if (!startedForTracking.filter((itemClone) => itemClone === item).length) {
-          startedForTracking.push(item)
-          localStorage.setItem("startedForTracking", JSON.stringify(startedForTracking))
-        }
-      } else {
-        startedForTracking = [item]
-        localStorage.setItem("startedForTracking", JSON.stringify(startedForTracking))
-      }
-    },
   },
   mounted() {
-    this.allCompanies = utils.getCompanies()
-    this.companies = this.allCompanies
   },
   watch: {
   }
