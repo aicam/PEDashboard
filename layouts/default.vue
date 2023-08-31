@@ -87,6 +87,11 @@ export default {
           to: '/dashboard/recommendations'
         },
         {
+          icon: 'mdi-handshake',
+          title: 'Deal Insights',
+          to: '/dashboard/deal_insights'
+        },
+        {
           icon: 'mdi-head-lightbulb',
           title: 'Insight',
           to: 'insight'
