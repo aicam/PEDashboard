@@ -186,7 +186,7 @@
               style="justify-content: space-between; align-items: center"
             >
               <v-icon large>mdi-database-outline</v-icon>
-              <div class="ms-2 my-auto" style="width: 100%; text-align: left">
+              <div class="ms-2 my-auto  font-weight-bold" style="width: 100%; text-align: left">
                 DATA
               </div>
             </div>

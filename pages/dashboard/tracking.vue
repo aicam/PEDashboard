@@ -32,7 +32,7 @@
               style="justify-content: space-between; align-items: center"
             >
               <v-icon large>mdi-radar</v-icon>
-              <div class="ms-2 my-auto">TRACKED ASSETS</div>
+              <div class="ms-2 my-auto font-weight-bold">TRACKED ASSETS</div>
               <v-btn
                 class="d-flex flex-row ms-auto me-2 my-auto"
                 style="

@@ -2,9 +2,51 @@
   <v-row style="background: rgba(199, 184, 255, 0.1); padding: 0px">
     <v-row
       class="ps-6 pt-5 pb-6"
-      style="font-weight: 400; font-size: 28px; color: black; margin-left: 15px"
+      style="
+        font-weight: 400;
+        font-size: 28px;
+        color: black;
+        margin-left: 15px;
+        margin-right: 15px;
+      "
     >
-      Dashboard
+      <v-col cols="12" sm="12" md="8" lg="8" xl="9" xxl="10" class="">
+        Dashboard
+      </v-col>
+      <v-col cols="12" sm="12" md="4" lg="4" xl="3" xxl="2">
+        <div class="d-flex flex-row pe-2" style="justify-content: flex-end">
+          <v-btn
+            color="white"
+            class="primary--text d-flex"
+            block
+            @click="
+              () => {
+                chatModal.isOpen = true;
+                chatModal.situation = 0;
+                chatModal.userCommand = '';
+                chatModal.messages = [
+                  {
+                    time: new Date(),
+                    from: 'robot',
+                    message:
+                      'Hello im your AI assistant, please describe me what kind of information do you want about this Page',
+                    hasBTN: false,
+                  },
+                ];
+              }
+            "
+            style="
+              text-transform: capitalize;
+              height: 40px;
+              border-radius: 12px;
+              margin-top: 10px;
+            "
+          >
+            <v-icon right dark class="me-4"> mdi-robot-outline </v-icon>
+            Talk with AI
+          </v-btn>
+        </div>
+      </v-col>
     </v-row>
 
     <!-- Chat Dialog START -->
@@ -143,65 +185,6 @@
     </v-dialog>
     <!-- Chat Asset Detail Dialog END -->
     <v-container fluid>
-      <v-row style="margin-left: 15px">
-        <v-col cols="12" sm="6" md="6" lg="6" xl="6" xxl="6">
-          <div class="pt-1 mb-3 d-flex flex-row" style="align-items: center">
-            <v-avatar size="93">
-              <img src="/1.svg" alt="John" />
-            </v-avatar>
-            <v-col>
-              <div>Welcome Back Dear User!</div>
-              <div style="color: #808080">
-                Happy to see you again on your dashboard.<br />If you had any
-                question please open a chat with me
-              </div>
-            </v-col>
-          </div>
-        </v-col>
-        <v-col cols="12" sm="6" md="6" lg="6" xl="6" xxl="6">
-          <div class="d-flex flex-row pe-2" style="justify-content: flex-end">
-            <v-btn
-              color="white"
-              class="primary--text d-flex"
-              @click="
-                () => {
-                  chatModal.isOpen = true;
-                  chatModal.situation = 0;
-                  chatModal.userCommand = '';
-                  chatModal.messages = [
-                    {
-                      time: new Date(),
-                      from: 'robot',
-                      message:
-                        'Hello im your AI assistant, please describe me what kind of information do you want about this Page',
-                      hasBTN: false,
-                    },
-                  ];
-                }
-              "
-              style="
-                text-transform: capitalize;
-                height: 40px;
-                border-radius: 12px;
-                margin-top: 10px;
-              "
-            >
-              <v-icon right dark class="me-4"> mdi-robot-outline </v-icon>
-              Talk with AI
-            </v-btn>
-          </div>
-        </v-col>
-      </v-row>
-      <v-row
-        style="
-          font-size: 18px;
-          font-weight: 500;
-          color: #808080;
-          padding-left: 1rem;
-        "
-        >Short Summary</v-row
-      >
-      <!--      AA-->
       <v-row style="margin-left: 10px">
         <v-col cols="12" sm="6" md="6" lg="6" xl="6" xxl="6">
           <v-card class="cart-deals">
@@ -210,7 +193,7 @@
               style="justify-content: space-between; align-items: center"
             >
               <v-icon large>mdi-shield-check</v-icon>
-              <div class="my-auto ms-2">RECOMMENDATIONS</div>
+              <div class="my-auto ms-2 font-weight-bold">RECOMMENDATIONS</div>
               <v-btn
                 class="d-flex flex-row ms-auto me-2 my-auto"
                 style="
@@ -290,7 +273,7 @@
               style="justify-content: space-between; align-items: center"
             >
               <v-icon large>mdi-radar</v-icon>
-              <div class="ms-2 my-auto">TRACKED ASSETS</div>
+              <div class="ms-2 my-auto font-weight-bold">TRACKED ASSETS</div>
               <v-btn
                 class="d-flex flex-row ms-auto me-2 my-auto"
                 style="
@@ -382,7 +365,7 @@
             style="justify-content: space-between; align-items: center"
           >
             <v-icon large>mdi-head-lightbulb</v-icon>
-            <div class="ms-2 my-auto">INSIGHTS</div>
+            <div class="ms-2 my-auto font-weight-bold">INSIGHTS</div>
             <v-btn
               class="d-flex flex-row ms-auto me-2 my-auto"
               style="
@@ -412,102 +395,73 @@
             class="mt-8 mb-12"
             style="height: 1px; background: rgba(211, 211, 211, 0.8)"
           ></div>
-          <v-row style="text-align: center"
-            ><p
-              style="
-                font-size: 1.3rem;
-                font-weight: 400;
-                width: 100% !important;
-              "
-            >
-              Progress completeness
-            </p></v-row
-          >
-          <div
-            class="d-flex flex-row justify-space-between align-center h-100"
-            style="margin-top: 10px"
-          >
-            <div
-              class="d-flex flex-column"
-              style="
-                width: 100%;
-                border-right-width: 1px;
-                border-right-style: inset;
-                border-right-color: rgba(211, 211, 211, 0.8);
-              "
-            >
-              <p
-                class="text-center"
-                style="font-size: 1.2rem; line-height: 1.5rem; font-weight: 400"
-              >
-                Phase Zero
-              </p>
-              <p
-                class="text-center"
-                style="
-                  font-size: 1.2rem;
-                  line-height: 0.75rem;
-                  font-weight: 400;
-                "
-              >
-                {{ `${parseFloat(insightTable.p0).toFixed(2)}%` }}
-              </p>
-            </div>
-
-            <div
-              class="d-flex flex-column"
-              style="
-                width: 100%;
-                border-right-width: 1px;
-                border-right-style: inset;
-                border-right-color: rgba(211, 211, 211, 0.8);
-              "
-            >
-              <p
-                class="text-center"
-                style="font-size: 1.2rem; line-height: 1.5rem; font-weight: 400"
-              >
-                Phase One
-              </p>
-              <p
-                class="text-center"
-                style="
-                  font-size: 1.2rem;
-                  line-height: 0.75rem;
-                  font-weight: 400;
-                "
-              >
-                {{ `${parseFloat(insightTable.p1).toFixed(2)}%` }}
-              </p>
-            </div>
-
-            <div class="d-flex flex-column" style="width: 100%">
-              <p
-                class="text-center"
-                style="font-size: 1.2rem; line-height: 1.5rem; font-weight: 400"
-              >
-                Phase Two
-              </p>
-              <p
-                class="text-center"
-                style="
-                  font-size: 1.2rem;
-                  line-height: 0.75rem;
-                  font-weight: 400;
-                "
-              >
-                {{ `${insightTable.p2}%` }}
-              </p>
-            </div>
-          </div>
-          <v-row style="margin-top: 5px">
-            <apexchart
-              :options="insightTable.dataChartOptions"
-              :series="insightTable.dataSeries"
-              type="bar"
-              style="width: 100% !important"
-              height="300"
-            ></apexchart>
+          <v-row>
+            <v-col cols="12" sm="12" md="12" lg="6" xl="6" xxl="6">
+              <apexchart
+                :options="insightTable.dataChartOptions"
+                :series="insightTable.dataSeries"
+                type="bar"
+                style="width: 100% !important"
+                height="300px"
+              ></apexchart>
+            </v-col>
+            <v-col cols="12" sm="12" md="12" lg="6" xl="6" xxl="6">
+              <v-row style="text-align: center; width: 100%">
+                <span class="font-weight-regular" style="margin: 0 auto"
+                  >Progress completeness</span
+                >
+              </v-row>
+              <v-row>
+                <v-col
+                  cols="12"
+                  sm="4"
+                  md="4"
+                  lg="4"
+                  xl="4"
+                  xxl="4"
+                  style="padding: 0px"
+                >
+                  <apexchart
+                    :options="insightTable.p0.dataChartOptions"
+                    :series="insightTable.p0.dataSeries"
+                    style="width: 100% !important"
+                    height="250"
+                  ></apexchart>
+                </v-col>
+                <v-col
+                  cols="12"
+                  sm="4"
+                  md="4"
+                  lg="4"
+                  xl="4"
+                  xxl="4"
+                  style="padding: 0px"
+                >
+                  <apexchart
+                    :options="insightTable.p1.dataChartOptions"
+                    :series="insightTable.p1.dataSeries"
+                    style="width: 100% !important"
+                    height="250"
+                  ></apexchart>
+                </v-col>
+                <v-col
+                  cols="12"
+                  sm="4"
+                  md="4"
+                  lg="4"
+                  xl="4"
+                  xxl="4"
+                  style="padding: 0px"
+                >
+                  <apexchart
+                    :options="insightTable.p2.dataChartOptions"
+                    :series="insightTable.p2.dataSeries"
+                    style="width: 100% !important"
+                    height="250"
+                  ></apexchart>
+                </v-col>
+              </v-row>
+            </v-col>
           </v-row>
         </v-card>
       </v-col>
@@ -519,7 +473,7 @@
               style="justify-content: space-between; align-items: center"
             >
               <v-icon large>mdi-database-outline</v-icon>
-              <div class="ms-2 my-auto">DATA</div>
+              <div class="ms-2 my-auto font-weight-bold">DATA</div>
               <v-btn
                 class="d-flex flex-row ms-auto me-2 my-auto"
                 style="
@@ -656,7 +610,7 @@
               style="justify-content: space-between; align-items: center"
             >
               <v-icon large>mdi-robot-outline</v-icon>
-              <div class="ms-2 my-auto">MODELS TRAINED</div>
+              <div class="ms-2 my-auto font-weight-bold">MODELS TRAINED</div>
               <v-btn
                 class="d-flex flex-row ms-auto me-2 my-auto"
                 style="
@@ -738,57 +692,6 @@
                   "
                 >
                   {{ trainedModelsTable.forkedModelCount }}
-                </p>
-              </div>
-            </div>
-            <v-row>
-              <p
-                style="
-                  font-size: 1.3rem;
-                  font-weight: 400;
-                  width: 100%;
-                  text-align: center;
-                  margin-top: 17px;
-                "
-              >
-                IQ Improvement (Last Month)
-              </p>
-            </v-row>
-            <div
-              class="d-flex flex-row justify-space-between align-center h-100"
-              style="margin-top: 10px"
-            >
-              <div
-                class="d-flex flex-column"
-                style="
-                  width: 100%;
-                  border-right-width: 1px;
-                  border-right-style: inset;
-                  border-right-color: rgba(211, 211, 211, 0.8);
-                "
-              >
-                <p
-                  class="text-center"
-                  style="
-                    font-size: 1.2rem;
-                    line-height: 0.75rem;
-                    font-weight: 400;
-                  "
-                >
-                  +{{ trainedModelsTable.iqMegaModel }}%
-                </p>
-              </div>
-
-              <div class="d-flex flex-column" style="width: 100%">
-                <p
-                  class="text-center"
-                  style="
-                    font-size: 1.2rem;
-                    line-height: 0.75rem;
-                    font-weight: 400;
-                  "
-                >
-                  +{{ trainedModelsTable.iqForkedModel }}%
                 </p>
               </div>
             </div>
@@ -881,9 +784,9 @@ export default {
       insightTable: {
         dataSeries: [],
         dataChartOptions: {},
-        p0: "",
-        p1: "",
-        p2: "",
+        p0: { dataSeries: [], dataChartOptions: {} },
+        p1: { dataSeries: [], dataChartOptions: {} },
+        p2: { dataSeries: [], dataChartOptions: {} },
       },
     };
   },
@@ -1098,20 +1001,25 @@ export default {
       this.trainedModelsTable.dataChartOptions = { ...allOptions };
       this.trainedModelsTable.dataSeries = [
         {
-          name: modelsTrainedData?.[1].name,
-
+          name: "IQ Level(Last Month)",
+          group: "iqLevel",
           data: [
-            modelsTrainedData?.[1].megaModel,
-            modelsTrainedData?.[1].forkedModel,
+            (modelsTrainedData?.[1].megaModel * 0.6).toFixed(2),
+            (modelsTrainedData?.[1].forkedModel * 0.8).toFixed(2),
+          ],
+        },
+        {
+          name: "QI Improvement",
+          group: "iqLevel",
+          data: [
+            (modelsTrainedData?.[1].megaModel * 0.4).toFixed(2),
+            (modelsTrainedData?.[1].forkedModel * 0.2).toFixed(2),
           ],
         },
         {
           name: modelsTrainedData?.[2].name,
-
-          data: [
-            modelsTrainedData?.[2].megaModel,
-            modelsTrainedData?.[2].forkedModel,
-          ],
+          group: "benchMark",
+          data: [iqBenchMarkLevel.megaModel, iqBenchMarkLevel.forkedModel],
         },
       ];
     },
@@ -1233,12 +1141,172 @@ export default {
       const companyInsightsData = [totalAssets, avgCompleteness, avgPast];
       const options = this.getEmptyChartObject();
       options.colors = ["#7c3aed", "#d97706", "#14b8a6"];
+      options.plotOptions.bar = {
+        horizontal: true,
+      };
       options.chart.stacked = false;
       options.chart.toolbar.show = false;
       options.xaxis.categories = [["Phase Zero"], ["Phase One"], ["Phase Two"]];
-      this.insightTable.p0 = parseFloat(companyInsightsData?.[1].p0).toFixed(2);
-      this.insightTable.p1 = parseFloat(companyInsightsData?.[1].p1).toFixed(2);
-      this.insightTable.p2 = parseFloat(companyInsightsData?.[1].p2).toFixed(2);
+      this.insightTable.p0.dataSeries = [
+        parseFloat(companyInsightsData?.[1].p0).toFixed(2),
+      ];
+      this.insightTable.p0.dataChartOptions = {
+        chart: {
+          height: 280,
+          type: "radialBar",
+        },
+        colors: ["#20E647"],
+        plotOptions: {
+          radialBar: {
+            hollow: {
+              margin: 0,
+              size: "70%",
+              background: "#293450",
+            },
+            track: {
+              dropShadow: {
+                enabled: true,
+                top: 2,
+                left: 0,
+                blur: 4,
+                opacity: 0.15,
+              },
+            },
+            dataLabels: {
+              name: {
+                offsetY: -10,
+                color: "#fff",
+                fontSize: "13px",
+              },
+              value: {
+                color: "#fff",
+                fontSize: "30px",
+                show: true,
+              },
+            },
+          },
+        },
+        fill: {
+          type: "gradient",
+          gradient: {
+            shade: "dark",
+            type: "vertical",
+            gradientToColors: ["#609bb5"],
+            stops: [0, 100],
+          },
+        },
+        stroke: {
+          lineCap: "round",
+        },
+        labels: ["Phase Zero"],
+      };
+      this.insightTable.p1.dataSeries = [
+        parseFloat(companyInsightsData?.[1].p1).toFixed(2),
+      ];
+      this.insightTable.p1.dataChartOptions = {
+        chart: {
+          height: 280,
+          type: "radialBar",
+        },
+        colors: ["#20E647"],
+        plotOptions: {
+          radialBar: {
+            hollow: {
+              margin: 0,
+              size: "70%",
+              background: "#293450",
+            },
+            track: {
+              dropShadow: {
+                enabled: true,
+                top: 2,
+                left: 0,
+                blur: 4,
+                opacity: 0.15,
+              },
+            },
+            dataLabels: {
+              name: {
+                offsetY: -10,
+                color: "#fff",
+                fontSize: "13px",
+              },
+              value: {
+                color: "#fff",
+                fontSize: "30px",
+                show: true,
+              },
+            },
+          },
+        },
+        fill: {
+          type: "gradient",
+          gradient: {
+            shade: "dark",
+            type: "vertical",
+            gradientToColors: ["#609bb5"],
+            stops: [0, 100],
+          },
+        },
+        stroke: {
+          lineCap: "round",
+        },
+        labels: ["Phase One"],
+      };
+      this.insightTable.p2.dataSeries = [
+        parseFloat(companyInsightsData?.[1].p2).toFixed(2),
+      ];
+      this.insightTable.p2.dataChartOptions = {
+        chart: {
+          height: 280,
+          type: "radialBar",
+        },
+        colors: ["#20E647"],
+        plotOptions: {
+          radialBar: {
+            hollow: {
+              margin: 0,
+              size: "70%",
+              background: "#293450",
+            },
+            track: {
+              dropShadow: {
+                enabled: true,
+                top: 2,
+                left: 0,
+                blur: 4,
+                opacity: 0.15,
+              },
+            },
+            dataLabels: {
+              name: {
+                offsetY: -10,
+                color: "#fff",
+                fontSize: "13px",
+              },
+              value: {
+                color: "#fff",
+                fontSize: "30px",
+                show: true,
+              },
+            },
+          },
+        },
+        fill: {
+          type: "gradient",
+          gradient: {
+            shade: "dark",
+            type: "vertical",
+            gradientToColors: ["#609bb5"],
+            stops: [0, 100],
+          },
+        },
+        stroke: {
+          lineCap: "round",
+        },
+        labels: ["Phase Two"],
+      };
+
       this.insightTable.dataChartOptions = { ...options };
       this.insightTable.dataSeries = [
         {

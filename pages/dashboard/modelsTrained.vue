@@ -31,7 +31,10 @@
               style="justify-content: space-between; align-items: center"
             >
               <v-icon large>mdi-robot-outline</v-icon>
-              <div class="ms-2 my-auto" style="width: 100%; text-align: left">
+              <div
+                class="ms-2 my-auto font-weight-bold"
+                style="width: 100%; text-align: left"
+              >
                 MODELS TRAINED
               </div>
               <v-btn
@@ -133,57 +136,6 @@
                   "
                 >
                   {{ trainedModelsTable.forkedModelCount }}
-                </p>
-              </div>
-            </div>
-            <v-row>
-              <p
-                style="
-                  font-size: 1.3rem;
-                  font-weight: 400;
-                  width: 100%;
-                  text-align: center;
-                  margin-top: 17px;
-                "
-              >
-                IQ Improvement (Last Month)
-              </p>
-            </v-row>
-            <div
-              class="d-flex flex-row justify-space-between align-center h-100"
-              style="margin-top: 10px"
-            >
-              <div
-                class="d-flex flex-column"
-                style="
-                  width: 100%;
-                  border-right-width: 1px;
-                  border-right-style: inset;
-                  border-right-color: rgba(211, 211, 211, 0.8);
-                "
-              >
-                <p
-                  class="text-center"
-                  style="
-                    font-size: 1.2rem;
-                    line-height: 0.75rem;
-                    font-weight: 400;
-                  "
-                >
-                  +{{ trainedModelsTable.iqMegaModel }}%
-                </p>
-              </div>
-
-              <div class="d-flex flex-column" style="width: 100%">
-                <p
-                  class="text-center"
-                  style="
-                    font-size: 1.2rem;
-                    line-height: 0.75rem;
-                    font-weight: 400;
-                  "
-                >
-                  +{{ trainedModelsTable.iqForkedModel }}%
                 </p>
               </div>
             </div>
@@ -884,20 +836,25 @@ export default {
       this.trainedModelsTable.dataChartOptions = { ...allOptions };
       this.trainedModelsTable.dataSeries = [
         {
-          name: modelsTrainedData?.[1].name,
-
+          name: "IQ Level(Last Month)",
+          group: "iqLevel",
           data: [
-            modelsTrainedData?.[1].megaModel,
-            modelsTrainedData?.[1].forkedModel,
+            (modelsTrainedData?.[1].megaModel * 0.6).toFixed(2),
+            (modelsTrainedData?.[1].forkedModel * 0.8).toFixed(2),
+          ],
+        },
+        {
+          name: "QI Improvement",
+          group: "iqLevel",
+          data: [
+            (modelsTrainedData?.[1].megaModel * 0.4).toFixed(2),
+            (modelsTrainedData?.[1].forkedModel * 0.2).toFixed(2),
           ],
         },
         {
           name: modelsTrainedData?.[2].name,
-
-          data: [
-            modelsTrainedData?.[2].megaModel,
-            modelsTrainedData?.[2].forkedModel,
-          ],
+          group: "benchMark",
+          data: [iqBenchMarkLevel.megaModel, iqBenchMarkLevel.forkedModel],
         },
       ];
     },

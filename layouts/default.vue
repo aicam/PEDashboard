@@ -184,9 +184,10 @@
         <v-list-item
           v-for="(item, i) in items"
           :key="i"
-          :to="item.to"
+          :href="item.to"
           router
           exact
+          replace
         >
           <v-list-item-action>
             <v-icon>{{ item.icon }}</v-icon>

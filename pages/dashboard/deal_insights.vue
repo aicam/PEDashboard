@@ -33,19 +33,19 @@
               style="justify-content: space-between; align-items: center"
             >
               <v-icon large>mdi-head-lightbulb</v-icon>
-              <div class="ms-2 my-auto">INSIGHTS</div>
+              <div class="ms-2 my-auto font-weight-bold">INSIGHTS</div>
               <v-btn
-                class="d-flex flex-row ms-auto me-2 mt-2"
+                class="d-flex flex-row ms-auto me-2 my-auto"
                 style="
-                  background: black;
-                  color: white;
-                  border-radius: 30px;
+                  background: white;
+                  color: black;
+                  border: 1px solid #cccccc;
+                  border-radius: 15px;
                   text-transform: capitalize;
                 "
-                @click="() => (addNewInsightCompanyDialog.isOpen = true)"
+                @click="redirect('/dashboard/deal_insights')"
+                >View</v-btn
               >
-                + Add
-              </v-btn>
             </div>
 
             <div
@@ -63,114 +63,73 @@
               class="mt-8 mb-12"
               style="height: 1px; background: rgba(211, 211, 211, 0.8)"
             ></div>
-            <v-row style="text-align: center"
-              ><p
-                style="
-                  font-size: 1.3rem;
-                  font-weight: 400;
-                  width: 100% !important;
-                "
-              >
-                Progress completeness
-              </p></v-row
-            >
-            <div
-              class="d-flex flex-row justify-space-between align-center h-100"
-              style="margin-top: 10px"
-            >
-              <div
-                class="d-flex flex-column"
-                style="
-                  width: 100%;
-                  border-right-width: 1px;
-                  border-right-style: inset;
-                  border-right-color: rgba(211, 211, 211, 0.8);
-                "
-              >
-                <p
-                  class="text-center"
-                  style="
-                    font-size: 1.2rem;
-                    line-height: 1.5rem;
-                    font-weight: 400;
-                  "
-                >
-                  Phase Zero
-                </p>
-                <p
-                  class="text-center"
-                  style="
-                    font-size: 1.2rem;
-                    line-height: 0.75rem;
-                    font-weight: 400;
-                  "
-                >
-                  {{ `${parseFloat(insightTable.p0).toFixed(2)}%` }}
-                </p>
-              </div>
-
-              <div
-                class="d-flex flex-column"
-                style="
-                  width: 100%;
-                  border-right-width: 1px;
-                  border-right-style: inset;
-                  border-right-color: rgba(211, 211, 211, 0.8);
-                "
-              >
-                <p
-                  class="text-center"
-                  style="
-                    font-size: 1.2rem;
-                    line-height: 1.5rem;
-                    font-weight: 400;
-                  "
-                >
-                  Phase One
-                </p>
-                <p
-                  class="text-center"
-                  style="
-                    font-size: 1.2rem;
-                    line-height: 0.75rem;
-                    font-weight: 400;
-                  "
-                >
-                  {{ `${parseFloat(insightTable.p1).toFixed(2)}%` }}
-                </p>
-              </div>
-
-              <div class="d-flex flex-column" style="width: 100%">
-                <p
-                  class="text-center"
-                  style="
-                    font-size: 1.2rem;
-                    line-height: 1.5rem;
-                    font-weight: 400;
-                  "
-                >
-                  Phase Two
-                </p>
-                <p
-                  class="text-center"
-                  style="
-                    font-size: 1.2rem;
-                    line-height: 0.75rem;
-                    font-weight: 400;
-                  "
-                >
-                  {{ `${insightTable.p2}%` }}
-                </p>
-              </div>
-            </div>
-            <v-row style="margin-top: 5px">
-              <apexchart
-                :options="insightTable.dataChartOptions"
-                :series="insightTable.dataSeries"
-                type="bar"
-                style="width: 100% !important"
-                height="300"
-              ></apexchart>
+            <v-row>
+              <v-col cols="12" sm="12" md="12" lg="6" xl="6" xxl="6">
+                <apexchart
+                  :options="insightTable.dataChartOptions"
+                  :series="insightTable.dataSeries"
+                  type="bar"
+                  style="width: 100% !important"
+                  height="300px"
+                ></apexchart>
+              </v-col>
+              <v-col cols="12" sm="12" md="12" lg="6" xl="6" xxl="6">
+                <v-row style="text-align: center; width: 100%">
+                  <span class="font-weight-regular" style="margin: 0 auto"
+                    >Progress completeness</span
+                  >
+                </v-row>
+                <v-row>
+                  <v-col
+                    cols="12"
+                    sm="4"
+                    md="4"
+                    lg="4"
+                    xl="4"
+                    xxl="4"
+                    style="padding: 0px"
+                  >
+                    <apexchart
+                      :options="insightTable.p0.dataChartOptions"
+                      :series="insightTable.p0.dataSeries"
+                      style="width: 100% !important"
+                      height="250"
+                    ></apexchart>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="4"
+                    md="4"
+                    lg="4"
+                    xl="4"
+                    xxl="4"
+                    style="padding: 0px"
+                  >
+                    <apexchart
+                      :options="insightTable.p1.dataChartOptions"
+                      :series="insightTable.p1.dataSeries"
+                      style="width: 100% !important"
+                      height="250"
+                    ></apexchart>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="4"
+                    md="4"
+                    lg="4"
+                    xl="4"
+                    xxl="4"
+                    style="padding: 0px"
+                  >
+                    <apexchart
+                      :options="insightTable.p2.dataChartOptions"
+                      :series="insightTable.p2.dataSeries"
+                      style="width: 100% !important"
+                      height="250"
+                    ></apexchart>
+                  </v-col>
+                </v-row>
+              </v-col>
             </v-row>
           </v-card>
         </v-col>
@@ -1555,9 +1514,9 @@ export default {
       insightTable: {
         dataSeries: [],
         dataChartOptions: {},
-        p0: "",
-        p1: "",
-        p2: "",
+        p0: { dataSeries: [], dataChartOptions: {} },
+        p1: { dataSeries: [], dataChartOptions: {} },
+        p2: { dataSeries: [], dataChartOptions: {} },
       },
       allInsightCompanies: [],
       summaryInsights: {
@@ -1790,9 +1749,165 @@ export default {
       options.chart.stacked = false;
       options.chart.toolbar.show = false;
       options.xaxis.categories = [["Phase Zero"], ["Phase One"], ["Phase Two"]];
-      this.insightTable.p0 = parseFloat(companyInsightsData?.[1].p0).toFixed(2);
-      this.insightTable.p1 = parseFloat(companyInsightsData?.[1].p1).toFixed(2);
-      this.insightTable.p2 = parseFloat(companyInsightsData?.[1].p2).toFixed(2);
+      this.insightTable.p0.dataSeries = [
+        parseFloat(companyInsightsData?.[1].p0).toFixed(2),
+      ];
+      this.insightTable.p0.dataChartOptions = {
+        chart: {
+          height: 280,
+          type: "radialBar",
+        },
+        colors: ["#20E647"],
+        plotOptions: {
+          radialBar: {
+            hollow: {
+              margin: 0,
+              size: "70%",
+              background: "#293450",
+            },
+            track: {
+              dropShadow: {
+                enabled: true,
+                top: 2,
+                left: 0,
+                blur: 4,
+                opacity: 0.15,
+              },
+            },
+            dataLabels: {
+              name: {
+                offsetY: -10,
+                color: "#fff",
+                fontSize: "13px",
+              },
+              value: {
+                color: "#fff",
+                fontSize: "30px",
+                show: true,
+              },
+            },
+          },
+        },
+        fill: {
+          type: "gradient",
+          gradient: {
+            shade: "dark",
+            type: "vertical",
+            gradientToColors: ["#609bb5"],
+            stops: [0, 100],
+          },
+        },
+        stroke: {
+          lineCap: "round",
+        },
+        labels: ["Phase Zero"],
+      };
+      this.insightTable.p1.dataSeries = [
+        parseFloat(companyInsightsData?.[1].p1).toFixed(2),
+      ];
+      this.insightTable.p1.dataChartOptions = {
+        chart: {
+          height: 280,
+          type: "radialBar",
+        },
+        colors: ["#20E647"],
+        plotOptions: {
+          radialBar: {
+            hollow: {
+              margin: 0,
+              size: "70%",
+              background: "#293450",
+            },
+            track: {
+              dropShadow: {
+                enabled: true,
+                top: 2,
+                left: 0,
+                blur: 4,
+                opacity: 0.15,
+              },
+            },
+            dataLabels: {
+              name: {
+                offsetY: -10,
+                color: "#fff",
+                fontSize: "13px",
+              },
+              value: {
+                color: "#fff",
+                fontSize: "30px",
+                show: true,
+              },
+            },
+          },
+        },
+        fill: {
+          type: "gradient",
+          gradient: {
+            shade: "dark",
+            type: "vertical",
+            gradientToColors: ["#609bb5"],
+            stops: [0, 100],
+          },
+        },
+        stroke: {
+          lineCap: "round",
+        },
+        labels: ["Phase One"],
+      };
+      this.insightTable.p2.dataSeries = [
+        parseFloat(companyInsightsData?.[1].p2).toFixed(2),
+      ];
+      this.insightTable.p2.dataChartOptions = {
+        chart: {
+          height: 280,
+          type: "radialBar",
+        },
+        colors: ["#20E647"],
+        plotOptions: {
+          radialBar: {
+            hollow: {
+              margin: 0,
+              size: "70%",
+              background: "#293450",
+            },
+            track: {
+              dropShadow: {
+                enabled: true,
+                top: 2,
+                left: 0,
+                blur: 4,
+                opacity: 0.15,
+              },
+            },
+            dataLabels: {
+              name: {
+                offsetY: -10,
+                color: "#fff",
+                fontSize: "13px",
+              },
+              value: {
+                color: "#fff",
+                fontSize: "30px",
+                show: true,
+              },
+            },
+          },
+        },
+        fill: {
+          type: "gradient",
+          gradient: {
+            shade: "dark",
+            type: "vertical",
+            gradientToColors: ["#609bb5"],
+            stops: [0, 100],
+          },
+        },
+        stroke: {
+          lineCap: "round",
+        },
+        labels: ["Phase Two"],
+      };
       this.insightTable.dataChartOptions = { ...options };
       this.insightTable.dataSeries = [
         {

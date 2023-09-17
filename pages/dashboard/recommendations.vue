@@ -32,7 +32,10 @@
               style="justify-content: space-between; align-items: center"
             >
               <v-icon large>mdi-shield-check</v-icon>
-              <div class="my-auto ms-2" style="text-align: left; width: 100%">
+              <div
+                class="my-auto ms-2 font-weight-bold"
+                style="text-align: left; width: 100%"
+              >
                 RECOMMENDATIONS
               </div>
             </div>
